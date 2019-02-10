@@ -1,5 +1,6 @@
 const https = require('https');
-const {isGoodSunrise} = require('./functions.js')
+const fs = require('fs');
+const {getSunriseData} = require('./functions.js')
 
 const options = {
     hostname: "www.metaweather.com",
@@ -13,12 +14,15 @@ const req = https.request(options, (res) => {
         body += incomingData.toString();
     });
     res.on("end", () => {
-        const data = JSON.parse(body);
-        const sunset = data.sun_set.match(/T(.+)\./);
-        const sunrise = data.sun_rise.match(/T(.+)\./);
-        const weather = data.consolidated_weather;
-        console.log(`The sun will set tonight at ${sunset[1]}`)
-        console.log(`The sun will rise tomorrow at ${sunrise[1]}`)
+
+            const data = JSON.parse(body);
+            const sunriseData = getSunriseData(data)
+    
+            if (sunriseData.isGood) {
+                console.log(`the next sunrise will be ${nextSunriseDay} at ${sunriseData.nextSunriseTime} and it's going to be a good one! `)
+            } else {
+                console.log(`I'm afraid there won't be much to see this morning but be sure to check back later`)
+            }
     });
 });
 
@@ -27,3 +31,17 @@ req.on("error", (e) => {
 })
 
 req.end();
+
+// fs.readFile('./weatherData.json', 'utf8', (err, body) => {
+//     if (err) console.log(err)
+//     else {
+//         const data = JSON.parse(body);
+//         const sunriseData = getSunriseData(data)
+
+//         if (sunriseData.isGood) {
+//             console.log(`the next sunrise will be ${nextSunriseDay} at ${sunriseData.nextSunriseTime} and it's going to be a good one! `)
+//         } else {
+//             console.log(`I'm afraid there won't be much to see this morning but be sure to check back later`)
+//         }
+//     }
+// })
