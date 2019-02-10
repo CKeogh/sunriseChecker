@@ -16,7 +16,6 @@ function getSunriseData(weatherData) {
 
     const weatherState = weather[currentDay].weather_state_name;
     const sunriseIsGood = weatherState === "Clear" || weatherState === 'Light Cloud';
-
     let output = {nextSunriseTime: sunrise, nextSunriseDay: sunriseDay, isGood: sunriseIsGood };
 
     return output;

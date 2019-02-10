@@ -27,7 +27,8 @@ const req = https.request(options, (res) => {
             }
             if (sunsetData.isGood) {
                 console.log(`the next sunset will be ${sunsetData.nextSunsetDay} at ${sunsetData.nextSunsetTime} and it's going to be a good one!`)
-            } else {
+            }
+            if (!sunsetData.isGood && !sunriseData.isGood) {
                 console.log(`I'm afraid there won't be much to see today but be sure to check back later`)
             }
     });
