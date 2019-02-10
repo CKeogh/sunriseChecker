@@ -1,0 +1,22 @@
+{
+  "name": "sunrisechecker",
+  "version": "1.0.0",
+  "description": "retrieve data from a weather api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CKeogh/sunriseChecker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CKeogh/sunriseChecker/issues"
+  },
+  "homepage": "https://github.com/CKeogh/sunriseChecker#readme",
+  "bin" : {
+    "sunCheck": "./index.js"
+  }
+}

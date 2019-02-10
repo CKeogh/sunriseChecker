@@ -6,3 +6,4 @@
     * determine sunrise/sunset time
     * determine if its light cloud/clear
 3. respond with yes or no
+

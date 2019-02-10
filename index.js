@@ -1,6 +1,9 @@
+#!/home/chris/.nvm/versions/node/v11.5.0/bin/node
+
+
 const https = require('https');
 const fs = require('fs');
-const {getSunriseData} = require('./functions.js')
+const { getSunriseData, getSunsetData } = require('./functions.js')
 
 const options = {
     hostname: "www.metaweather.com",
@@ -16,12 +19,16 @@ const req = https.request(options, (res) => {
     res.on("end", () => {
 
             const data = JSON.parse(body);
-            const sunriseData = getSunriseData(data)
+            const sunriseData = getSunriseData(data);
+            const sunsetData = getSunsetData(data);
     
             if (sunriseData.isGood) {
-                console.log(`the next sunrise will be ${nextSunriseDay} at ${sunriseData.nextSunriseTime} and it's going to be a good one! `)
+                console.log(`the next sunrise will be ${sunriseData.nextSunriseDay} at ${sunriseData.nextSunriseTime} and it's going to be a good one! `)
+            }
+            if (sunsetData.isGood) {
+                console.log(`the next sunset will be ${sunsetData.nextSunsetDay} at ${sunsetData.nextSunsetTime} and it's going to be a good one!`)
             } else {
-                console.log(`I'm afraid there won't be much to see this morning but be sure to check back later`)
+                console.log(`I'm afraid there won't be much to see today but be sure to check back later`)
             }
     });
 });
