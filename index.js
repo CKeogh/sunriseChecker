@@ -1,6 +1,5 @@
 #!/home/chris/.nvm/versions/node/v11.5.0/bin/node
 
-
 const https = require('https');
 const fs = require('fs');
 const { getSunriseData, getSunsetData } = require('./functions.js')
@@ -8,6 +7,7 @@ const { getSunriseData, getSunsetData } = require('./functions.js')
 const options = {
     hostname: "www.metaweather.com",
     path: "/api/location/26734/",
+
     method: "GET"
 }
 
@@ -29,7 +29,7 @@ const req = https.request(options, (res) => {
                 console.log(`the next sunset will be ${sunsetData.nextSunsetDay} at ${sunsetData.nextSunsetTime} and it's going to be a good one!`)
             }
             if (!sunsetData.isGood && !sunriseData.isGood) {
-                console.log(`I'm afraid there won't be much to see today but be sure to check back later`)
+                console.log(`I'm afraid there won't be much to see ${sunriseData.nextSunriseDay} but be sure to check back later`)
             }
     });
 });
@@ -39,6 +39,9 @@ req.on("error", (e) => {
 })
 
 req.end();
+
+
+//  ### SAMPLE WEATHER DATA FOR WORKING OFFLINE ##
 
 // fs.readFile('./weatherData.json', 'utf8', (err, body) => {
 //     if (err) console.log(err)
