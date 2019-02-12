@@ -1,7 +1,5 @@
 function getSunriseData(weatherData) {
 
-    const time = Date()
-    console.log(time);
     // const currentTime = weatherData.time.match(/T(.+)\./)[1];
     // const sunrise = weatherData.sun_rise.match(/T(.+)\./)[1];
     // const weather = weatherData.consolidated_weather;
@@ -47,5 +45,19 @@ function getSunsetData(weatherData) {
     return output;
 }
 
+function fetchNextSunsetData(sunsetTime, weatherData) {
+    const time = new Date();
+    const hoursNow = time.getHours();
+    const minutesNow = time.getMinutes();
+    const hoursSunset = +sunsetTime.slice(0, 2);
+    const minutesSunset = +sunsetTime.slice(-2);
 
-module.exports = { getSunriseData, getSunsetData };
+    weatherData.list.reduce((forecast, hourCast) => {
+        // filter the next sunset from the list
+    }, {});
+
+
+}
+
+
+module.exports = { getSunriseData, getSunsetData, fetchNextSunsetData };

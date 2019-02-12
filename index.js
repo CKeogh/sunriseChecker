@@ -2,7 +2,8 @@
 
 const https = require('https');
 const fs = require('fs');
-const { getSunriseData, getSunsetData } = require('./functions.js');
+const { getSunriseData, getSunsetData,
+fetchNextSunsetData } = require('./functions.js');
 
 // fs.readFile('./city.list.json','utf8', (err, data) => {
 //     const cities = JSON.parse(data);
@@ -62,9 +63,12 @@ const openWeather = {
 fs.readFile('./weatherData.json', 'utf8', (err, body) => {
     if (err) console.log(err)
     else {
+
         const data = JSON.parse(body);
-        console.log(data)
-        getSunriseData();
+        const sunset = '16:50';
+        console.log(data.list[0])
+        fetchNextSunsetData(sunset, data);
+
         // const sunriseData = getSunriseData(data)
 
         // if (sunriseData.isGood) {
