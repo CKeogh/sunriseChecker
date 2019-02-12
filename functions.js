@@ -22,9 +22,15 @@ function fetchNextSunsetData(sunsetTime, weatherData) {
     return nextSunset;
 }
 
-function goodSunset(weatherData) {
+function fetchNextSunriseData(sunriseTime, weatherData) {
+
+}
+
+function goodConditions(weatherData) {
     return weatherData.clouds.all < 50;
 }
 
 
-module.exports = { fetchNextSunsetData, goodSunset };
+
+
+module.exports = { fetchNextSunsetData, fetchNextSunriseData, goodConditions };
