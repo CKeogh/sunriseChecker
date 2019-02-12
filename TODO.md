@@ -7,6 +7,7 @@
 **TO DO**
 
 1. get sunset/sunrise time
+    - work out time to start watching it
 2. get current time
 3. work out next sunset/sunrise
 4. work out if good
