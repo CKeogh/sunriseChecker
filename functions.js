@@ -1,16 +1,6 @@
 
 function fetchNextSunsetData(sunsetTime, weatherData) {
     
-    const time = new Date();
-    const hoursNow = time.getHours();
-    const minutesNow = time.getMinutes();
-    const hoursSunset = +sunsetTime.slice(0, 2);
-    const minutesSunset = +sunsetTime.slice(-2);
-    let sunsetDay = 0;
-
-    if (hoursNow > hoursSunset) sunsetDay = 1;
-    else if (hoursNow === hoursSunset && minutesNow > minutesSunset) sunsetDay = 1;
-
     let nextSunset = {};
     for (let i = 0; i < weatherData.list.length; i++) {
         let date = weatherData.list[i].dt_txt
@@ -24,6 +14,15 @@ function fetchNextSunsetData(sunsetTime, weatherData) {
 
 function fetchNextSunriseData(sunriseTime, weatherData) {
 
+    let nextSunrise = {};
+    for (let i = 0; i < weatherData.list.length; i++) {
+        let date = weatherData.list[i].dt_txt
+        if (/09:00:00/.test(date)) {
+            nextSunrise = weatherData.list[i]
+            break;
+        }
+    }
+    return nextSunrise;
 }
 
 function goodConditions(weatherData) {

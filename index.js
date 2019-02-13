@@ -40,8 +40,10 @@ const req = https.request(openWeather, (res) => {
         nextSunsetData = fetchNextSunsetData(sunset, data);
         nextSunriseData = fetchNextSunriseData(sunrise, data);
         
+        console.log(nextSunriseData);
+        console.log('sunrise', goodConditions(nextSunriseData))
         console.log(nextSunsetData);
-        console.log(goodConditions(nextSunsetData));
+        console.log('sunset', goodConditions(nextSunsetData));
 
     });
 });
